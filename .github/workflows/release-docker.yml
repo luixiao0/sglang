@@ -79,10 +79,10 @@ jobs:
             exit 1
           fi
 
-          docker buildx build --output type=image,compression=zstd . -f docker/Dockerfile --build-arg CUDA_VERSION=${{ matrix.cuda_version }} --build-arg BUILD_TYPE=${{ matrix.build_type }} -t lmsysorg/sglang:${tag}${tag_suffix} --no-cache
-          docker push lmsysorg/sglang:${tag}${tag_suffix}
+          docker buildx build --output type=image,compression=zstd . -f docker/Dockerfile --build-arg CUDA_VERSION=${{ matrix.cuda_version }} --build-arg BUILD_TYPE=${{ matrix.build_type }} -t luixiao/sglang:${tag}${tag_suffix} --no-cache
+          docker push luixiao/sglang:${tag}${tag_suffix}
 
           if [ "${{ matrix.cuda_version }}" = "12.6.1" ]; then
-            docker tag lmsysorg/sglang:${tag}${tag_suffix} lmsysorg/sglang:latest${tag_suffix}
-            docker push lmsysorg/sglang:latest${tag_suffix}
+            docker tag luixiao/sglang:${tag}${tag_suffix} luixiao/sglang:latest${tag_suffix}
+            docker push luixiao/sglang:latest${tag_suffix}
           fi
